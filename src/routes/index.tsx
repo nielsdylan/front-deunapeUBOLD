@@ -8,7 +8,7 @@ const Auth2SignIn = lazy(() => import('@/views/auth/auth-2/sign-in'))
 const Dashboard = lazy(() => import('@/views/dashboards/dashboard'))
 const Dashboard2 = lazy(() => import('@/views/dashboards/dashboard2'))
 
-// Error
+// Errorr
 const Error400 = lazy(() => import('@/views/error/400'))
 const Error401 = lazy(() => import('@/views/error/401'))
 const Error403 = lazy(() => import('@/views/error/403'))
