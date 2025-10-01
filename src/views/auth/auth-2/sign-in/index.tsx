@@ -4,6 +4,7 @@ import {Link} from "react-router";
 import { Card, CardBody, Col, FormControl, Row } from 'react-bootstrap'
 import { LuCircleUser, LuKeyRound } from 'react-icons/lu'
 
+
 const Index = () => {
   return (
     <div className="auth-box p-0 w-100">
