@@ -4,9 +4,10 @@ import MainLayout from '@/layouts/MainLayout.tsx'
 // import SocialFeed from "@/views/apps/social-feed";
 
 const Auth2SignIn = lazy(() => import('@/views/auth/auth-2/sign-in'))
+// const Auth2SignIn = lazy(() => import('@/app/auth/index'))
 // Dashboards
 const Dashboard = lazy(() => import('@/views/dashboards/dashboard'))
-const Dashboard2 = lazy(() => import('@/views/dashboards/dashboard2'))
+// const Dashboard2 = lazy(() => import('@/views/dashboards/dashboard2'))
 
 // Errorr
 const Error400 = lazy(() => import('@/views/error/400'))
