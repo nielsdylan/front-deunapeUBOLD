@@ -9,6 +9,7 @@ import PublicRoute from '@/app/services/PublicRoute'
 const Auth2SignIn = lazy(() => import('@/app/auth/index'))
 // Dashboards
 const Dashboard = lazy(() => import('@/views/dashboards/dashboard'))
+const Album = lazy(() => import('@/app/page/galeria/Album'))
 // const Dashboard2 = lazy(() => import('@/views/dashboards/dashboard2'))
 
 // Errorr
@@ -22,6 +23,7 @@ const Error500 = lazy(() => import('@/views/error/500'))
 
 const dashboardRoutes: RouteObject[] = [
     {path: '/dashboard', element: <Dashboard/>},
+    {path: '/galeria/album', element: <Album/>},
 ]
 
 const errorRoutes: RouteObject[] = [

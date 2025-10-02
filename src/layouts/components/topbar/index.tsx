@@ -2,7 +2,7 @@
 import { useLayoutContext } from '@/context/useLayoutContext'
 import CustomizerToggler from '@/layouts/components/topbar/components/CustomizerToggler'
 import LanguageDropdown from '@/layouts/components/topbar/components/LanguageDropdown'
-import MegaMenu from '@/layouts/components/topbar/components/MegaMenu'
+// import MegaMenu from '@/layouts/components/topbar/components/MegaMenu'
 import MessageDropdown from '@/layouts/components/topbar/components/MessageDropdown'
 import ThemeToggler from '@/layouts/components/topbar/components/ThemeToggler'
 import UserProfile from '@/layouts/components/topbar/components/UserProfile'
@@ -64,7 +64,7 @@ const Topbar = () => {
             <TbMenu4 className="fs-22" />
           </button>
 
-          <MegaMenu />
+          {/* <MegaMenu /> */}
         </div>
 
         <div className="d-flex align-items-center gap-2">
