@@ -34,17 +34,6 @@ const errorRoutes: RouteObject[] = [
 ]
 const allRoutes: RouteObject[] = [
     {path: '/', element: <PublicRoute><Auth2SignIn/></PublicRoute>},
-    // {
-    //     element: <PublicRoute />,
-    //     children: [
-    //         {
-    //             path: '/',
-    //             element: <Auth2SignIn />,
-    //         },
-    //     ],
-
-    // },
-
     {
         element: <PrivateRoute></PrivateRoute>,
         children: [
