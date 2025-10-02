@@ -1,72 +1,90 @@
-import AppLogo from '@/components/AppLogo'
-import { appName, author, currentYear } from '@/helpers'
-import {Link, useNavigate} from "react-router";
-import { Card, CardBody, Col, FormControl, Row } from 'react-bootstrap'
-import { LuCircleUser, LuKeyRound } from 'react-icons/lu'
-import { useState, type FormEvent } from 'react';
-import axios from 'axios';
+import AppLogo from "@/components/AppLogo";
+import { appName, author, currentYear } from "@/helpers";
+import { Link, useNavigate } from "react-router";
+import { Card, CardBody, Col, FormControl, Row } from "react-bootstrap";
+import { LuCircleUser, LuKeyRound } from "react-icons/lu";
+import { useState, type FormEvent } from "react";
+import axios from "axios";
 const Index = () => {
-    // const API_URL = import.meta.env.VITE_APP_API_URL;
-    const API_URL = 'http://127.0.0.1:8000/api';
+  const API_URL = import.meta.env.VITE_APP_API_URL;
 
-    const navigate = useNavigate();
-    const [formValues, setFormValues] = useState({
-        email: '',
-        password: ''
-    });
+  const navigate = useNavigate();
+  const [formValues, setFormValues] = useState({
+    email: "",
+    password: "",
+  });
 
-    const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        // const { name, value } = e.target;
-        // setFormValues(prevValues => ({
-        // ...prevValues,
-        // [name]: value
-        // }));
-        console.log('dd');
-        
-    };
-    const handleSubmit = async  (e: FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        setLoading(true);
-        console.log(API_URL);
-        
-        try {
-          // Reemplaza la URL con la de tu API
-          const response = await axios.post(API_URL+'/login', formValues);
-          localStorage.setItem('userToken', JSON.stringify(response.data));
-          localStorage.setItem('token', response.data.access_token);
-        
-        } catch (err) {
-          console.error(err);
-        } finally {
-          setLoading(false);
-          console.log('finally', loading);
-          navigate('/dashboard');
-        }
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormValues((prevValues) => ({
+      ...prevValues,
+      [name]: value,
+    }));
+  };
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setLoading(true);
+    console.log(API_URL);
 
-    };
+    try {
+      // Reemplaza la URL con la de tu API
+      const response = await axios.post(API_URL + "/login", formValues);
+      localStorage.setItem("userToken", JSON.stringify(response.data));
+      localStorage.setItem("token", response.data.access_token);
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setLoading(false);
+      console.log("finally", loading);
+      navigate("/dashboard");
+    }
+  };
   return (
     <div className="auth-box p-0 w-100">
       <Row className="w-100 g-0">
-        <Col md={'auto'}>
+        <Col md={"auto"}>
           <Card className="auth-box-form border-0 mb-0">
-            <div className="position-absolute top-0 end-0" style={{ width: 180 }}>
+            <div
+              className="position-absolute top-0 end-0"
+              style={{ width: 180 }}
+            >
               <svg
-                style={{ opacity: '0.075', width: '100%', height: 'auto' }}
+                style={{ opacity: "0.075", width: "100%", height: "auto" }}
                 width={600}
                 height={560}
                 viewBox="0 0 600 560"
                 fill="none"
-                xmlns="http://www.w3.org/2000/svg">
+                xmlns="http://www.w3.org/2000/svg"
+              >
                 <g clipPath="url(#clip0_948_1464)">
-                  <mask id="mask0_948_1464" style={{ maskType: 'luminance' }} maskUnits="userSpaceOnUse" x={0} y={0} width={600} height={1200}>
+                  <mask
+                    id="mask0_948_1464"
+                    style={{ maskType: "luminance" }}
+                    maskUnits="userSpaceOnUse"
+                    x={0}
+                    y={0}
+                    width={600}
+                    height={1200}
+                  >
                     <path d="M0 0L0 1200H600L600 0H0Z" fill="white" />
                   </mask>
                   <g mask="url(#mask0_948_1464)">
-                    <path d="M537.448 166.697L569.994 170.892L550.644 189.578L537.448 166.697Z" fill="#FF4C3E" />
+                    <path
+                      d="M537.448 166.697L569.994 170.892L550.644 189.578L537.448 166.697Z"
+                      fill="#FF4C3E"
+                    />
                   </g>
-                  <mask id="mask1_948_1464" style={{ maskType: 'luminance' }} maskUnits="userSpaceOnUse" x={0} y={0} width={600} height={1200}>
+                  <mask
+                    id="mask1_948_1464"
+                    style={{ maskType: "luminance" }}
+                    maskUnits="userSpaceOnUse"
+                    x={0}
+                    y={0}
+                    width={600}
+                    height={1200}
+                  >
                     <path d="M0 0L0 1200H600L600 0H0Z" fill="white" />
                   </mask>
                   <g mask="url(#mask1_948_1464)">
@@ -166,7 +184,12 @@ const Index = () => {
                 </g>
                 <defs>
                   <clipPath id="clip0_948_1464">
-                    <rect width={560} height={600} fill="white" transform="matrix(0 -1 1 0 0 560)" />
+                    <rect
+                      width={560}
+                      height={600}
+                      fill="white"
+                      transform="matrix(0 -1 1 0 0 560)"
+                    />
                   </clipPath>
                 </defs>
               </svg>
@@ -176,14 +199,25 @@ const Index = () => {
                 <AppLogo />
               </div>
               <div className="mt-auto">
-                <p className="text-muted text-center auth-sub-text mx-auto">Let’s get you signed in. Enter your email and password to continue.</p>
+                <p className="text-muted text-center auth-sub-text mx-auto">
+                  Let’s get you signed in. Enter your email and password to
+                  continue.
+                </p>
                 <form className="mt-4" onSubmit={handleSubmit}>
                   <div className="mb-3">
                     <label htmlFor="userEmail" className="form-label">
                       Email address <span className="text-danger">*</span>
                     </label>
                     <div className="app-search">
-                      <FormControl type="email" id="userEmail" placeholder="you@example.com" value={formValues.email} onChange={handleChange} required />
+                      <FormControl
+                        type="email"
+                        id="userEmail"
+                        placeholder="you@example.com"
+                        value={formValues.email}
+                        onChange={handleChange}
+                        name="email"
+                        required
+                      />
                       {/* <input type="email" id="userEmail" placeholder="you@example.com" value={formValues.email} onChange={handleChange} required /> */}
                       <LuCircleUser className="app-search-icon text-muted" />
                     </div>
@@ -193,36 +227,59 @@ const Index = () => {
                       Password <span className="text-danger">*</span>
                     </label>
                     <div className="app-search">
-                      <FormControl type="password" id="userPassword" placeholder="••••••••" value={formValues.password} onChange={handleChange} required />
+                      <FormControl
+                        type="password"
+                        id="userPassword"
+                        placeholder="••••••••"
+                        value={formValues.password}
+                        onChange={handleChange}
+                        name="password"
+                        required
+                      />
                       <LuKeyRound className="app-search-icon text-muted" />
                     </div>
                   </div>
                   <div className="d-flex justify-content-between align-items-center mb-3">
                     <div className="form-check">
-                      <input className="form-check-input form-check-input-light fs-14" type="checkbox" defaultChecked id="rememberMe" />
+                      <input
+                        className="form-check-input form-check-input-light fs-14"
+                        type="checkbox"
+                        defaultChecked
+                        id="rememberMe"
+                      />
                       <label className="form-check-label" htmlFor="rememberMe">
                         Keep me signed in
                       </label>
                     </div>
-                    <Link to="/auth-2/reset-pass" className="text-decoration-underline link-offset-3 text-muted">
+                    <Link
+                      to="/auth-2/reset-pass"
+                      className="text-decoration-underline link-offset-3 text-muted"
+                    >
                       Forgot Password?
                     </Link>
                   </div>
                   <div className="d-grid">
-                    <button type="submit" className="btn btn-primary fw-bold py-2">
+                    <button
+                      type="submit"
+                      className="btn btn-primary fw-bold py-2"
+                    >
                       Ingresar
                     </button>
                   </div>
                 </form>
               </div>
               <p className="text-muted text-center mt-4 mb-0">
-                New here?{' '}
-                <Link to="/auth-2/sign-up" className="text-decoration-underline link-offset-3 fw-semibold">
+                New here?{" "}
+                <Link
+                  to="/auth-2/sign-up"
+                  className="text-decoration-underline link-offset-3 fw-semibold"
+                >
                   Create an account
                 </Link>
               </p>
               <p className="text-center text-muted mt-auto mb-0">
-                © {currentYear} {appName} — by <span className="fw-semibold">{author}</span>
+                © {currentYear} {appName} — by{" "}
+                <span className="fw-semibold">{author}</span>
               </p>
             </CardBody>
           </Card>
@@ -234,7 +291,7 @@ const Index = () => {
         </div>
       </Row>
     </div>
-  )
-}
+  );
+};
 
-export default Index
+export default Index;

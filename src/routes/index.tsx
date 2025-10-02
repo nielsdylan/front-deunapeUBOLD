@@ -1,10 +1,12 @@
 import {lazy} from 'react'
 import {Navigate, type RouteObject} from 'react-router'
 import MainLayout from '@/layouts/MainLayout.tsx'
+import PrivateRoute from '@/app/services/PrivateRoute'
+import PublicRoute from '@/app/services/PublicRoute'
 // import SocialFeed from "@/views/apps/social-feed";
 
-const Auth2SignIn = lazy(() => import('@/views/auth/auth-2/sign-in'))
-// const Auth2SignIn = lazy(() => import('@/app/auth/index'))
+// const Auth2SignIn = lazy(() => import('@/views/auth/auth-2/sign-in'))
+const Auth2SignIn = lazy(() => import('@/app/auth/index'))
 // Dashboards
 const Dashboard = lazy(() => import('@/views/dashboards/dashboard'))
 // const Dashboard2 = lazy(() => import('@/views/dashboards/dashboard2'))
@@ -31,16 +33,34 @@ const errorRoutes: RouteObject[] = [
     {path: '/error/500', element: <Error500/>},
 ]
 const allRoutes: RouteObject[] = [
-    {path: '/', element: <Auth2SignIn/>},
+    {path: '/', element: <PublicRoute><Auth2SignIn/></PublicRoute>},
+    // {
+    //     element: <PublicRoute />,
+    //     children: [
+    //         {
+    //             path: '/',
+    //             element: <Auth2SignIn />,
+    //         },
+    //     ],
+
+    // },
+
     {
-        element: <MainLayout/>,
+        element: <PrivateRoute></PrivateRoute>,
         children: [
             {
-                path: '/',
-                element: <Navigate to="/dashboard" replace/>,
+                element: <MainLayout />,
+                children: [
+                    {
+                        path: '/',
+                        element: <Navigate to="/dashboard" replace/>,
+                    },
+                    ...dashboardRoutes,
+                ],
+                
             },
-            ...dashboardRoutes,
         ],
+
     },
     {path: '*', element: <Error404/>},
 ]

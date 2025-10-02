@@ -1,52 +1,10 @@
 import AppLogo from '@/components/AppLogo'
 import { appName, author, currentYear } from '@/helpers'
-import { Link, useNavigate } from "react-router";
+import { Link } from "react-router";
 import { Card, CardBody, Col, FormControl, Row } from 'react-bootstrap'
 import { LuCircleUser, LuKeyRound } from 'react-icons/lu'
-import React, { useState, type FormEvent } from 'react';
-import axios from 'axios';
-
 
 const Index = () => {
-    const API_URL = import.meta.env.VITE_APP_API_URL;
-
-    const navigate = useNavigate();
-    const [formValues, setFormValues] = useState({
-        email: '',
-        password: ''
-    });
-
-    const [loading, setLoading] = useState(false);
-
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = e.target;
-        setFormValues(prevValues => ({
-        ...prevValues,
-        [name]: value
-        }));
-        // console.log('dd');
-
-    };
-    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        setLoading(true);
-        console.log(API_URL);
-
-        try {
-            // Reemplaza la URL con la de tu API
-            const response = await axios.post(API_URL + '/login', formValues);
-            localStorage.setItem('userToken', JSON.stringify(response.data));
-            localStorage.setItem('token', response.data.access_token);
-
-        } catch (err) {
-            console.error(err);
-        } finally {
-            setLoading(false);
-            console.log('finally', loading);
-            navigate('/dashboard');
-        }
-
-    };
     return (
         <div className="auth-box p-0 w-100">
             <Row className="w-100 g-0">
@@ -178,13 +136,13 @@ const Index = () => {
                             </div>
                             <div className="mt-auto">
                                 <p className="text-muted text-center auth-sub-text mx-auto">Let’s get you signed in. Enter your email and password to continue.</p>
-                                <form className="mt-4" onSubmit={handleSubmit}>
+                                <form className="mt-4">
                                     <div className="mb-3">
                                         <label htmlFor="userEmail" className="form-label">
                                             Email address <span className="text-danger">*</span>
                                         </label>
                                         <div className="app-search">
-                                            <FormControl type="email" id="userEmail" name="email" placeholder="you@example.com" value={formValues.email} onChange={handleChange} required />
+                                            <FormControl type="email" id="userEmail" placeholder="you@example.com" required />
                                             <LuCircleUser className="app-search-icon text-muted" />
                                         </div>
                                     </div>
@@ -193,7 +151,7 @@ const Index = () => {
                                             Password <span className="text-danger">*</span>
                                         </label>
                                         <div className="app-search">
-                                            <FormControl type="password" name="password" id="userPassword" placeholder="••••••••" value={formValues.password} onChange={handleChange}  required />
+                                            <FormControl type="password" id="userPassword" placeholder="••••••••" required />
                                             <LuKeyRound className="app-search-icon text-muted" />
                                         </div>
                                     </div>
