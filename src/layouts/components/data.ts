@@ -110,11 +110,21 @@ export const menuItems: MenuItemType[] = [
   { key: 'navigation', label: 'Navigation', isTitle: true },
   { key: 'dashboards', label: 'Dashboards', icon: LuCircleGauge, url: '/dashboard' },
   {
-    key: 'topbars',
+    key: 'galeria',
     label: 'Galeria',
     icon: LuPanelTop,
     children: [
       { key: 'dark-topbar', label: 'Album', url: '/galeria/album' },
+    ],
+  },
+  { key: 'plantillas', label: 'Plantillas', icon: LuCircleGauge, url: '/plantillas' },
+  { key: 'admin', label: 'Administrador', isTitle: true },
+  {
+    key: 'configuration',
+    label: 'Configuración',
+    icon: LuPanelTop,
+    children: [
+      { key: 'dark-topbar', label: 'Clientes', url: '/configuracion/clientes' },
     ],
   },
 ]
